@@ -1,7 +1,7 @@
 module Main (main) where
 
-import qualified Lib.Main as Lib (main)
-import Lib.System (runIO)
+import qualified Counter.Main as Counter (main)
+import qualified Counter.System as Counter (runIO)
 
 main :: IO ()
-main = runIO Lib.main 0
+main = Counter.runIO Counter.main 0

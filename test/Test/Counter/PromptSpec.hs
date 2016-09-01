@@ -1,4 +1,4 @@
-module Test.Lib.PromptSpec (spec) where
+module Test.Counter.PromptSpec (spec) where
 
 import Prelude hiding (log)
 
@@ -7,9 +7,9 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.PromptImpl (getAction')
-import Lib.Classes (Console, Prompt)
-import Lib.Types (Action(Increment, Decrement))
+import Counter.PromptImpl (getAction')
+import Counter.Classes (Console, Prompt)
+import Counter.Types (Action(Increment, Decrement))
 
 mkFixture "Fixture" [''Console, ''Prompt]
 

@@ -1,4 +1,4 @@
-module Lib.Classes
+module Counter.Classes
   ( Console(..)
   , Prompt(..)
   , Crement(..)
@@ -6,7 +6,7 @@ module Lib.Classes
   , CounterLog(..)
   ) where
   
-import Lib.Types
+import Counter.Types
 
 class Monad m => Console m where
   readLine :: m String

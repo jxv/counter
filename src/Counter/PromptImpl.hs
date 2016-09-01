@@ -1,9 +1,9 @@
-module Lib.PromptImpl
+module Counter.PromptImpl
   ( getAction'
   ) where
 
-import Lib.Types
-import Lib.Classes
+import Counter.Types
+import Counter.Classes
   ( Console(readLine)
   , Prompt(getAction)
   )

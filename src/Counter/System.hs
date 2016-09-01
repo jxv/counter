@@ -1,4 +1,4 @@
-module Lib.System
+module Counter.System
     ( System
     , runIO
     ) where
@@ -6,12 +6,12 @@ module Lib.System
 import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.State (MonadState(..), StateT, evalStateT)
 
-import qualified Lib.ConsoleImpl as Console
-import qualified Lib.PromptImpl as Prompt
-import qualified Lib.CrementImpl as Crement
-import qualified Lib.CounterLogImpl as CounterLog
-import Lib.Types
-import Lib.Classes
+import qualified Counter.ConsoleImpl as Console
+import qualified Counter.PromptImpl as Prompt
+import qualified Counter.CrementImpl as Crement
+import qualified Counter.CounterLogImpl as CounterLog
+import Counter.Types
+import Counter.Classes
 
 newtype System a = System { unSystem :: StateT Integer IO a }
   deriving (Functor, Applicative, Monad, MonadIO, MonadState Integer)

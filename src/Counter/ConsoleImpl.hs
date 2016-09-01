@@ -1,4 +1,4 @@
-module Lib.ConsoleImpl
+module Counter.ConsoleImpl
   ( readLine
   , printLine
   ) where

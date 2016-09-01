@@ -1,11 +1,11 @@
-module Lib.Main
+module Counter.Main
   ( main
   , step
   ) where
 
 import Control.Monad (forever)
 
-import Lib.Classes
+import Counter.Classes
   ( Prompt(getAction)
   , Crement(crement)
   )

@@ -1,9 +1,9 @@
-module Lib.CrementImpl
+module Counter.CrementImpl
   ( crement
   ) where
 
-import Lib.Types
-import Lib.Classes
+import Counter.Types
+import Counter.Classes
   ( HasCounter(getCounter, putCounter)
   , CounterLog(logCounter)
   )

@@ -1,4 +1,4 @@
-module Test.Lib.CounterLogSpec (spec) where
+module Test.Counter.CounterLogSpec (spec) where
 
 import Prelude hiding (log)
 
@@ -7,8 +7,8 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.CounterLogImpl (logCounter)
-import Lib.Classes (Console)
+import Counter.CounterLogImpl (logCounter)
+import Counter.Classes (Console)
 
 mkFixture "Fixture" [''Console]
 

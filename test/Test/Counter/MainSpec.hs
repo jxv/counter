@@ -1,4 +1,4 @@
-module Test.Lib.MainSpec (spec) where
+module Test.Counter.MainSpec (spec) where
 
 import Prelude hiding (log)
 
@@ -7,9 +7,9 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.Main (step)
-import Lib.Classes (Prompt, Crement)
-import Lib.Types (Action(Increment))
+import Counter.Main (step)
+import Counter.Classes (Prompt, Crement)
+import Counter.Types (Action(Increment))
 
 mkFixture "Fixture" [''Prompt, ''Crement]
 

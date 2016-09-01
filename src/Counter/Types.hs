@@ -1,4 +1,4 @@
-module Lib.Types
+module Counter.Types
   ( Action(..)
   ) where
 

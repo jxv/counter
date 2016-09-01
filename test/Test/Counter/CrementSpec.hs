@@ -1,4 +1,4 @@
-module Test.Lib.CrementSpec (spec) where
+module Test.Counter.CrementSpec (spec) where
 
 import Prelude hiding (log)
 
@@ -7,9 +7,9 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.CrementImpl (crement)
-import Lib.Classes (HasCounter, CounterLog)
-import Lib.Types (Action(Increment, Decrement))
+import Counter.CrementImpl (crement)
+import Counter.Classes (HasCounter, CounterLog)
+import Counter.Types (Action(Increment, Decrement))
 
 mkFixture "Fixture" [''HasCounter, ''CounterLog]
 
