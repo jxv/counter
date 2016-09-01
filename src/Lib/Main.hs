@@ -1,14 +1,19 @@
 module Lib.Main
   ( main
-  , helloMessage
+  , step
   ) where
 
-import Lib.Classes (Console(readLine, printLine))
+import Control.Monad (forever)
 
-helloMessage :: String -> String
-helloMessage target = "Hello, " ++ target ++ "!"
+import Lib.Classes
+  ( Prompt(getAction)
+  , Crement(crement)
+  )
 
-main :: Console m => m ()
-main = do
-  target <- readLine
-  printLine $ helloMessage target
+main :: (Prompt m, Crement m) => m ()
+main = forever step
+
+step :: (Prompt m, Crement m) => m ()
+step = do
+  action <- getAction
+  crement action

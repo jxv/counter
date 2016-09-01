@@ -7,24 +7,9 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.Main ()
-import Lib.Classes ()
-import Lib.Types ()
-
-data Action
-  = Increment
-  deriving (Show, Eq)
-
-class Monad m => Prompt m where
-  getAction :: m Action
-
-class Monad m => Crement m where
-  crement :: Action -> m ()
-
-step :: (Prompt m, Crement m) => m ()
-step = do
-  action <- getAction
-  crement action
+import Lib.Main (step)
+import Lib.Classes (Prompt, Crement)
+import Lib.Types (Action(Increment))
 
 mkFixture "Fixture" [''Prompt, ''Crement]
 
