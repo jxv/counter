@@ -3,6 +3,14 @@ module Lib.CrementImpl
   ) where
 
 import Lib.Types
+import Lib.Classes
+  ( HasCounter(getCounter, putCounter)
+  , CounterLog(logCounter)
+  )
 
-crement :: Monad m => Action -> m ()
-crement = error "crement"
+crement :: (HasCounter m, CounterLog m) => Action -> m ()
+crement Increment = do
+  counter <- getCounter
+  let counter' = succ counter
+  putCounter counter'
+  logCounter counter'

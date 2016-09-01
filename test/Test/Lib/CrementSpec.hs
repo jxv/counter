@@ -7,21 +7,9 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
+import Lib.CrementImpl (crement)
+import Lib.Classes (HasCounter, CounterLog)
 import Lib.Types (Action(Increment))
-
-class Monad m => HasCounter m where
-  getCounter :: m Integer
-  putCounter :: Integer -> m ()
-
-class Monad m => CounterLog m where
-  logCounter :: Integer -> m ()
-
-crement :: (HasCounter m, CounterLog m) => Action -> m ()
-crement Increment = do
-  counter <- getCounter
-  let counter' = succ counter
-  putCounter counter'
-  logCounter counter'
 
 mkFixture "Fixture" [''HasCounter, ''CounterLog]
 

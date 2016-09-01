@@ -26,3 +26,10 @@ instance Prompt System where
 
 instance Crement System where
   crement = Crement.crement
+
+instance HasCounter System where
+  getCounter = error "getCounter"
+  putCounter = error "putCounter"
+
+instance CounterLog System where
+  logCounter = error "logCounter"
