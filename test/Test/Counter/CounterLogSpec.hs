@@ -17,7 +17,7 @@ spec = do
   describe "logCounter" $ do
     it "should print the counter to the console" $ do
       let stubCounter = 23
-      let stubCounter' = show stubCounter
+      let stubCounter' = "23"
 
       calls <- logTestFixtureT (logCounter stubCounter) def
         { _printLine = \msg -> do

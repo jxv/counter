@@ -18,7 +18,7 @@ spec = do
   describe "crement" $ do
     it "should increment then log the counter" $ do
       let stubCounter = 100
-      let stubCounter' = succ stubCounter
+      let stubCounter' = 101
 
       calls <- logTestFixtureT (crement Increment) def
         { _getCounter = do
