@@ -9,7 +9,7 @@ import Control.Monad.TestFixture.TH
 
 import Lib.PromptImpl (getAction')
 import Lib.Classes (Console, Prompt)
-import Lib.Types (Action(Increment))
+import Lib.Types (Action(Increment, Decrement))
 
 mkFixture "Fixture" [''Console, ''Prompt]
 
@@ -41,3 +41,16 @@ spec = do
         }
 
       calls `shouldBe` ["readLine", "getAction"]
+
+
+    it "should return Decrement with good input" $ do
+      let stubInput = "-"
+
+      (actualAction, calls) <- evalTestFixtureT getAction' def
+        { _readLine = do
+           log "readLine"
+           return stubInput
+        }
+
+      calls `shouldBe` ["readLine"]
+      actualAction `shouldBe` Decrement

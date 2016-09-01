@@ -4,4 +4,5 @@ module Lib.Types
 
 data Action
   = Increment
+  | Decrement
   deriving (Show, Eq)

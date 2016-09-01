@@ -9,7 +9,7 @@ import Control.Monad.TestFixture.TH
 
 import Lib.CrementImpl (crement)
 import Lib.Classes (HasCounter, CounterLog)
-import Lib.Types (Action(Increment))
+import Lib.Types (Action(Increment, Decrement))
 
 mkFixture "Fixture" [''HasCounter, ''CounterLog]
 
@@ -21,6 +21,24 @@ spec = do
       let stubCounter' = succ stubCounter
 
       calls <- logTestFixtureT (crement Increment) def
+        { _getCounter = do
+            log "getCounter"
+            return stubCounter
+        , _putCounter = \counter -> do
+            log "putCounter"
+            lift $ counter `shouldBe` stubCounter'
+        , _logCounter = \counter -> do
+            log "logCounter"
+            lift $ counter `shouldBe` stubCounter'
+        }
+
+      calls `shouldBe` ["getCounter", "putCounter", "logCounter"]
+
+    it "should increment then log the counter" $ do
+      let stubCounter = 100
+      let stubCounter' = 99
+
+      calls <- logTestFixtureT (crement Decrement) def
         { _getCounter = do
             log "getCounter"
             return stubCounter

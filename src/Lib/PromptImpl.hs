@@ -13,4 +13,5 @@ getAction' = do
   input <- readLine
   case input of
     "+" -> return Increment
+    "-" -> return Decrement
     _ -> getAction

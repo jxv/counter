@@ -9,8 +9,12 @@ import Lib.Classes
   )
 
 crement :: (HasCounter m, CounterLog m) => Action -> m ()
-crement Increment = do
+crement Increment = crementer succ
+crement Decrement = crementer pred
+
+crementer :: (HasCounter m, CounterLog m) => (Integer -> Integer) -> m ()
+crementer alter = do
   counter <- getCounter
-  let counter' = succ counter
+  let counter' = alter counter
   putCounter counter'
   logCounter counter'
