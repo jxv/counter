@@ -7,23 +7,40 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.Main (main, helloMessage)
-import Lib.Classes (Console)
+import Lib.Main ()
+import Lib.Classes ()
+import Lib.Types ()
 
-mkFixture "Fixture" [''Console]
+data Action
+  = Increment
+  deriving (Show, Eq)
+
+class Monad m => Prompt m where
+  getAction :: m Action
+
+class Monad m => Crement m where
+  crement :: Action -> m ()
+
+step :: (Prompt m, Crement m) => m ()
+step = do
+  action <- getAction
+  crement action
+
+mkFixture "Fixture" [''Prompt, ''Crement]
 
 spec :: Spec
 spec = do
-  describe "main" $ do
-    it "should print the hello message" $ do
-      let stubInput = "World"
-      
-      calls <- logTestFixtureT main def
-        { _readLine = do
-            log "readLine"
-            return stubInput
-        , _printLine = \msg -> do
-            log "printLine"
-            lift $ msg `shouldBe` helloMessage stubInput
+  describe "step" $ do
+    it "should increment the counter" $ do
+      let stubAction = Increment
+
+      calls <- logTestFixtureT step def
+        { _getAction = do
+            log "getAction"
+            return stubAction
+        , _crement = \action -> do
+            log "crement"
+            lift $ action `shouldBe` stubAction
         }
-      calls `shouldBe` ["readLine", "printLine"]
+
+      calls `shouldBe` ["getAction", "crement"]
