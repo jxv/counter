@@ -7,12 +7,10 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.Classes (Console(printLine))
+import Lib.CounterLogImpl (logCounter)
+import Lib.Classes (Console)
 
 mkFixture "Fixture" [''Console]
-
-logCounter :: Console m => Integer -> m ()
-logCounter = printLine . show
 
 spec :: Spec
 spec = do

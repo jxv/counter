@@ -9,6 +9,7 @@ import Control.Monad.State (MonadState(..), StateT, evalStateT)
 import qualified Lib.ConsoleImpl as Console
 import qualified Lib.PromptImpl as Prompt
 import qualified Lib.CrementImpl as Crement
+import qualified Lib.CounterLogImpl as CounterLog
 import Lib.Types
 import Lib.Classes
 
@@ -33,4 +34,4 @@ instance HasCounter System where
   putCounter = put
 
 instance CounterLog System where
-  logCounter = error "logCounter"
+  logCounter = CounterLog.logCounter
