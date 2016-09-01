@@ -24,7 +24,7 @@ instance Console System where
   printLine = Console.printLine
 
 instance Prompt System where
-  getAction = Prompt.getAction
+  getAction = error "getAction"
 
 instance Crement System where
   crement = Crement.crement
