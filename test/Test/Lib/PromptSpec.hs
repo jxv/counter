@@ -7,18 +7,11 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Lib.Classes (Console(readLine), Prompt(getAction))
+import Lib.PromptImpl (getAction')
+import Lib.Classes (Console, Prompt)
 import Lib.Types (Action(Increment))
 
 mkFixture "Fixture" [''Console, ''Prompt]
-
-getAction' :: (Console m, Prompt m) => m Action
-getAction' = do
-  input <- readLine
-  case input of
-    "+" -> return Increment
-    _ -> getAction
-
 
 spec :: Spec
 spec = do

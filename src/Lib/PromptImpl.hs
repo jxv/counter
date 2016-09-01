@@ -1,9 +1,16 @@
 module Lib.PromptImpl
-  ( getAction
+  ( getAction'
   ) where
 
 import Lib.Types
+import Lib.Classes
+  ( Console(readLine)
+  , Prompt(getAction)
+  )
 
-getAction :: Monad m => m Action
-getAction = error "getAction"
-
+getAction' :: (Console m, Prompt m) => m Action
+getAction' = do
+  input <- readLine
+  case input of
+    "+" -> return Increment
+    _ -> getAction
