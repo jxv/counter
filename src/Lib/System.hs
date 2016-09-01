@@ -4,6 +4,7 @@ module Lib.System
     ) where
 
 import Control.Monad.IO.Class (MonadIO)
+import Control.Monad.State (MonadState(..), StateT, evalStateT)
 
 import qualified Lib.ConsoleImpl as Console
 import qualified Lib.PromptImpl as Prompt
@@ -11,11 +12,11 @@ import qualified Lib.CrementImpl as Crement
 import Lib.Types
 import Lib.Classes
 
-newtype System a = System { unSystem :: IO a }
-  deriving (Functor, Applicative, Monad, MonadIO)
+newtype System a = System { unSystem :: StateT Integer IO a }
+  deriving (Functor, Applicative, Monad, MonadIO, MonadState Integer)
 
-runIO :: System a -> IO a
-runIO system = unSystem system
+runIO :: System a -> Integer -> IO a
+runIO system counter = evalStateT (unSystem system) counter
 
 instance Console System where
   readLine = Console.readLine
@@ -28,8 +29,8 @@ instance Crement System where
   crement = Crement.crement
 
 instance HasCounter System where
-  getCounter = error "getCounter"
-  putCounter = error "putCounter"
+  getCounter = get
+  putCounter = put
 
 instance CounterLog System where
   logCounter = error "logCounter"
