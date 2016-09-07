@@ -8,6 +8,7 @@ import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
 import Counter.Main (step)
+
 import Counter.Classes (Prompt, Crement)
 import Counter.Types (Action(Increment))
 

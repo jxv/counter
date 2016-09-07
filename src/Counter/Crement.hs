@@ -1,4 +1,4 @@
-module Counter.CrementImpl
+module Counter.Crement
   ( crement
   ) where
 

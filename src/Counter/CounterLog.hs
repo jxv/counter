@@ -1,4 +1,4 @@
-module Counter.CounterLogImpl
+module Counter.CounterLog
   ( logCounter
   ) where
 

@@ -7,7 +7,8 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Counter.CounterLogImpl (logCounter)
+import Counter.CounterLog (logCounter)
+
 import Counter.Classes (Console)
 
 mkFixture "Fixture" [''Console]

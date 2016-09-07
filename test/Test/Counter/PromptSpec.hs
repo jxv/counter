@@ -7,7 +7,8 @@ import Control.Monad.Trans (lift)
 import Control.Monad.TestFixture
 import Control.Monad.TestFixture.TH
 
-import Counter.PromptImpl (getAction')
+import Counter.Prompt (getAction')
+
 import Counter.Classes (Console, Prompt)
 import Counter.Types (Action(Increment, Decrement))
 

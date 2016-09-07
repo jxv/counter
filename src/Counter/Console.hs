@@ -1,4 +1,4 @@
-module Counter.ConsoleImpl
+module Counter.Console
   ( readLine
   , printLine
   ) where

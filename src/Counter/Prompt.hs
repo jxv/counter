@@ -1,4 +1,4 @@
-module Counter.PromptImpl
+module Counter.Prompt
   ( getAction'
   ) where
 
