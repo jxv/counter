@@ -1,12 +1,13 @@
 module Counter.Prompt
-  ( getAction'
+  ( Prompt(..)
+  , getAction'
   ) where
 
 import Counter.Types
-import Counter.Classes
-  ( Console(readLine)
-  , Prompt(getAction)
-  )
+import Counter.Console (Console(readLine))
+
+class Monad m => Prompt m where
+  getAction :: m Action
 
 getAction' :: (Console m, Prompt m) => m Action
 getAction' = do

@@ -1,12 +1,17 @@
 module Counter.Console
-  ( readLine
-  , printLine
+  ( Console(..)
+  , readLine'
+  , printLine'
   ) where
 
 import Control.Monad.IO.Class (MonadIO(liftIO))
 
-readLine :: MonadIO m => m String
-readLine = liftIO getLine
+class Monad m => Console m where
+  readLine :: m String
+  printLine :: String -> m ()
 
-printLine :: MonadIO m => String -> m ()
-printLine = liftIO . putStrLn
+readLine' :: MonadIO m => m String
+readLine' = liftIO getLine
+
+printLine' :: MonadIO m => String -> m ()
+printLine' = liftIO . putStrLn

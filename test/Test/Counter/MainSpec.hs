@@ -9,8 +9,9 @@ import Control.Monad.TestFixture.TH
 
 import Counter.Main (step)
 
-import Counter.Classes (Prompt, Crement)
 import Counter.Types (Action(Increment))
+import Counter.Prompt (Prompt)
+import Counter.Crement (Crement)
 
 mkFixture "Fixture" [''Prompt, ''Crement]
 

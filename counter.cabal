@@ -32,8 +32,8 @@ library
   exposed-modules:
     Counter.Monad
     Counter.Types
-    Counter.Classes
     Counter.Main
+    Counter.HasCounter
     Counter.Console
     Counter.Prompt
     Counter.Crement

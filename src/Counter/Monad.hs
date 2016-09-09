@@ -1,17 +1,17 @@
 module Counter.Monad
-    ( Counter
-    , runCounter
-    ) where
+  ( Counter
+  , runCounter
+  ) where
 
 import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.State (MonadState(..), StateT, evalStateT)
 
-import qualified Counter.Console as Console
-import qualified Counter.Prompt as Prompt
-import qualified Counter.Crement as Crement
-import qualified Counter.CounterLog as CounterLog
 import Counter.Types
-import Counter.Classes
+import Counter.HasCounter
+import Counter.Console
+import Counter.Prompt
+import Counter.Crement
+import Counter.CounterLog
 
 newtype Counter a = Counter { unCounter :: StateT Integer IO a }
   deriving (Functor, Applicative, Monad, MonadIO, MonadState Integer)
@@ -20,18 +20,18 @@ runCounter :: Counter a -> Integer -> IO a
 runCounter counter count = evalStateT (unCounter counter) count
 
 instance Console Counter where
-  readLine = Console.readLine
-  printLine = Console.printLine
+  readLine = readLine'
+  printLine = printLine'
 
 instance Prompt Counter where
-  getAction = Prompt.getAction'
+  getAction = getAction'
 
 instance Crement Counter where
-  crement = Crement.crement
+  crement = crement'
 
 instance HasCounter Counter where
   getCounter = get
   putCounter = put
 
 instance CounterLog Counter where
-  logCounter = CounterLog.logCounter
+  logCounter = logCounter'

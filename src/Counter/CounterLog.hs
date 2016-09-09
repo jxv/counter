@@ -1,8 +1,12 @@
 module Counter.CounterLog
-  ( logCounter
+  ( CounterLog(..)
+  , logCounter'
   ) where
 
-import Counter.Classes (Console(printLine))
+import Counter.Console (Console(printLine))
 
-logCounter :: Console m => Integer -> m ()
-logCounter = printLine . show
+class Monad m => CounterLog m where
+  logCounter :: Integer -> m ()
+
+logCounter' :: Console m => Integer -> m ()
+logCounter' = printLine . show

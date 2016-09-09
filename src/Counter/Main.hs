@@ -5,10 +5,8 @@ module Counter.Main
 
 import Control.Monad (forever)
 
-import Counter.Classes
-  ( Prompt(getAction)
-  , Crement(crement)
-  )
+import Counter.Prompt (Prompt(getAction))
+import Counter.Crement (Crement(crement))
 
 main :: (Prompt m, Crement m) => m ()
 main = forever step

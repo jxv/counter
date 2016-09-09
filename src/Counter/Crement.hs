@@ -1,16 +1,18 @@
 module Counter.Crement
-  ( crement
+  ( Crement(..)
+  , crement'
   ) where
 
 import Counter.Types
-import Counter.Classes
-  ( HasCounter(getCounter, putCounter)
-  , CounterLog(logCounter)
-  )
+import Counter.HasCounter (HasCounter(getCounter, putCounter))
+import Counter.CounterLog (CounterLog(logCounter))
 
-crement :: (HasCounter m, CounterLog m) => Action -> m ()
-crement Increment = crementer succ
-crement Decrement = crementer pred
+class Monad m => Crement m where
+  crement :: Action -> m ()
+
+crement' :: (HasCounter m, CounterLog m) => Action -> m ()
+crement' Increment = crementer succ
+crement' Decrement = crementer pred
 
 crementer :: (HasCounter m, CounterLog m) => (Integer -> Integer) -> m ()
 crementer alter = do

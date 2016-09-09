@@ -9,8 +9,9 @@ import Control.Monad.TestFixture.TH
 
 import Counter.Prompt (getAction')
 
-import Counter.Classes (Console, Prompt)
 import Counter.Types (Action(Increment, Decrement))
+import Counter.Console (Console)
+import Counter.Prompt (Prompt)
 
 mkFixture "Fixture" [''Console, ''Prompt]
 
